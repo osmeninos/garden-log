@@ -1,7 +1,5 @@
 # garden-log
 
-## sprout
-
 A web app for home gardeners. Track what you've planted, know when
 to plant and harvest, and find out exactly how much water a plant needs today.
 
