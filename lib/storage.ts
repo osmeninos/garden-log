@@ -1,4 +1,4 @@
-import type { Plants as Plant } from "@/types/plants";
+import type { Plant } from "@/types/plant";
 
 const PLANTS = "garden-log:plants";
 
