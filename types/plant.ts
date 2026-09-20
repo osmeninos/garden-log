@@ -2,6 +2,6 @@ export type Plant = {
 	id: string;
 	name: string;
 	crop: string;
-	plantedAt?: string;
+	plantedAt: string;
 	area: number;
 };

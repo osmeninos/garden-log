@@ -12,3 +12,9 @@ export const CROPS = {
 	strawberry: 90,
 	basil: 60,
 };
+
+export function harvestDate(plantedAt: string, crop: string) {
+	const date = new Date(plantedAt);
+	date.setDate(date.getDate() + CROPS[crop as keyof typeof CROPS]);
+	return date.toLocaleDateString();
+}

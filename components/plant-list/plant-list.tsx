@@ -8,6 +8,7 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { harvestDate } from "@/lib/crops";
 import type { Plant } from "@/types/plant";
 
 const PlantsList = ({ plants }: { plants: Plant[] }) => {
@@ -19,6 +20,7 @@ const PlantsList = ({ plants }: { plants: Plant[] }) => {
 						<TableHead>Name</TableHead>
 						<TableHead>Crop</TableHead>
 						<TableHead>Planted at</TableHead>
+						<TableHead>Harvest</TableHead>
 						<TableHead className="text-right">Area</TableHead>
 					</TableRow>
 				</TableHeader>
@@ -32,6 +34,7 @@ const PlantsList = ({ plants }: { plants: Plant[] }) => {
 							<TableCell className="text-muted-foreground">
 								{plant.plantedAt}
 							</TableCell>
+							<TableCell>{harvestDate(plant.plantedAt, plant.crop)}</TableCell>
 							<TableCell className="text-right">{plant.area} m²</TableCell>
 						</TableRow>
 					))}
