@@ -14,8 +14,8 @@ import type { Plant } from "@/types/plant";
 
 const PlantEmpty = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	return (
-		<div>
-			<Empty className="min-h-dvh">
+		<div className="flex min-h-dvh flex-col">
+			<Empty className="flex-1">
 				<EmptyHeader>
 					<EmptyMedia variant="icon">
 						<SproutIcon />

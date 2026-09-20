@@ -24,7 +24,7 @@ const PlantDialog = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	}
 
 	return (
-		<div>
+		<div className="flex items-center">
 			<Dialog onOpenChange={setOpen} open={open}>
 				<DialogTrigger render={<Button className="cursor-pointer" />}>
 					<PlusIcon />

@@ -32,7 +32,7 @@ const PlantForm = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	}
 
 	return (
-		<div>
+		<div className="w-full">
 			<form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
 				<Field>
 					<FieldLabel>Name</FieldLabel>

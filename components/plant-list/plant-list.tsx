@@ -26,7 +26,7 @@ const PlantsList = ({
 	onRemove?: (id: string) => void;
 }) => {
 	return (
-		<div>
+		<div className="w-full">
 			<Table variant="card">
 				<TableHeader>
 					<TableRow>
@@ -52,7 +52,9 @@ const PlantsList = ({
 							</TableCell>
 							<TableCell>{harvestDate(plant.plantedAt, plant.crop)}</TableCell>
 							<TableCell className="text-muted-foreground">
-								{plant.lastWateredAt ? formatDate(plant.lastWateredAt) : "never"}
+								{plant.lastWateredAt
+									? formatDate(plant.lastWateredAt)
+									: "never"}
 							</TableCell>
 							<TableCell className="text-right">{plant.area} m²</TableCell>
 							<TableCell className="text-right">
