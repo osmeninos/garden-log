@@ -4,4 +4,5 @@ export type Plant = {
 	crop: string;
 	plantedAt: string;
 	area: number;
+	lastWateredAt?: string;
 };

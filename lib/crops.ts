@@ -19,8 +19,17 @@ export function getCrop(crop: string) {
 	return CROPS[crop as keyof typeof CROPS];
 }
 
+// filtrao do formato se quiser add mais manda bala ai luan
+export function formatDate(date: string) {
+	return date.replaceAll("-", "/");
+}
+
 export function harvestDate(plantedAt: string, crop: string) {
-	const date = new Date(plantedAt);
+	const date = new Date(`${plantedAt}T00:00`);
 	date.setDate(date.getDate() + getCrop(crop).days);
-	return date.toLocaleDateString();
+
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	return `${year}/${month}/${day}`;
 }
