@@ -4,34 +4,19 @@ import { useEffect, useState } from "react";
 import PlantDialog from "@/components/plant-dialog/plant-dialog";
 import PlantEmpty from "@/components/plant-empty/plant-empty";
 import PlantsList from "@/components/plant-list/plant-list";
-import { Spinner } from "@/components/ui/spinner";
 import { loadPlants, savePlants } from "@/lib/storage";
-import { getWeather, type Weather } from "@/lib/water";
 import type { Plant } from "@/types/plant";
 
 export default function Home() {
 	const [plantItem, setPlantItem] = useState<Plant[]>([]);
-	const [weather, setWeather] = useState<Weather | null>(null);
-	const [loading, setLoading] = useState(true);
-
 	useEffect(() => {
 		setPlantItem(loadPlants());
-		setLoading(false);
-		getWeather().then(setWeather);
 	}, []);
 
 	function addPlant(plant: Plant) {
 		const next = [...plantItem, plant];
 		setPlantItem(next);
 		savePlants(next);
-	}
-
-	if (loading) {
-		return (
-			<div className="flex min-h-dvh items-center justify-center">
-				<Spinner className="size-6 text-muted-foreground" />
-			</div>
-		);
 	}
 
 	if (plantItem.length === 0) {
@@ -52,7 +37,7 @@ export default function Home() {
 				</header>
 			</div>
 			<div>
-				<PlantsList plants={plantItem} weather={weather} />
+				<PlantsList plants={plantItem} />
 			</div>
 		</main>
 	);
