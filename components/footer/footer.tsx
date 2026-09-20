@@ -4,7 +4,7 @@ const linkClass =
 const Footer = () => {
 	return (
 		<footer className="mx-auto w-full max-w-4xl px-6 py-6 text-muted-foreground text-sm">
-			Feito por{" "}
+			Made by{" "}
 			<a
 				className={linkClass}
 				href="https://github.com/luannzin"
@@ -22,7 +22,7 @@ const Footer = () => {
 			>
 				di0rio
 			</a>{" "}
-			pela equipe{" "}
+			by the team{" "}
 			<a
 				className={linkClass}
 				href="https://github.com/osmeninos"
