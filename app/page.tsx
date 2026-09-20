@@ -5,12 +5,16 @@ import PlantDialog from "@/components/plant-dialog/plant-dialog";
 import PlantEmpty from "@/components/plant-empty/plant-empty";
 import PlantsList from "@/components/plant-list/plant-list";
 import { loadPlants, savePlants } from "@/lib/storage";
+import { getWeather, type Weather } from "@/lib/water";
 import type { Plant } from "@/types/plant";
 
 export default function Home() {
 	const [plantItem, setPlantItem] = useState<Plant[]>([]);
+	const [weather, setWeather] = useState<Weather | null>(null);
+
 	useEffect(() => {
 		setPlantItem(loadPlants());
+		getWeather().then(setWeather);
 	}, []);
 
 	function addPlant(plant: Plant) {
@@ -37,8 +41,37 @@ export default function Home() {
 				</header>
 			</div>
 			<div>
-				<PlantsList plants={plantItem} />
+				<PlantsList plants={plantItem} weather={weather} />
 			</div>
+			<footer className="mt-10 border-t pt-6 text-muted-foreground text-sm">
+				Feito por{" "}
+				<a
+					className="text-foreground underline underline-offset-4 hover:text-primary"
+					href="https://github.com/luannzin"
+					rel="noreferrer"
+					target="_blank"
+				>
+					luannzin
+				</a>{" "}
+				&{" "}
+				<a
+					className="text-foreground underline underline-offset-4 hover:text-primary"
+					href="https://github.com/di0rio"
+					rel="noreferrer"
+					target="_blank"
+				>
+					di0rio
+				</a>{" "}
+				pela equipe{" "}
+				<a
+					className="text-foreground underline underline-offset-4 hover:text-primary"
+					href="https://github.com/osmeninos"
+					rel="noreferrer"
+					target="_blank"
+				>
+					Os Meninos
+				</a>
+			</footer>
 		</main>
 	);
 }
