@@ -1,49 +1,41 @@
 "use client";
 
-import type { Plant } from "@/types/plant";
-import { Card } from "../ui/card";
 import {
-	Empty,
-	EmptyContent,
-	EmptyDescription,
-	EmptyHeader,
-	EmptyMedia,
-	EmptyTitle,
-} from "@/components/ui/empty";
-import { BookIcon, RouteIcon } from "lucide-react";
-import { Button } from "../ui/button";
+	Table,
+	TableBody,
+	TableCell,
+	TableHead,
+	TableHeader,
+	TableRow,
+} from "@/components/ui/table";
+import type { Plant } from "@/types/plant";
 
 const PlantsList = ({ plants }: { plants: Plant[] }) => {
-	if (plants.length === 0) {
-		return (
-			<Empty>
-				<EmptyHeader>
-					<EmptyMedia variant="icon">
-						<RouteIcon />
-					</EmptyMedia>
-					<EmptyTitle>Dont have plants in moment!</EmptyTitle>
-					<EmptyDescription>Create a plant to get started.</EmptyDescription>
-				</EmptyHeader>
-				<EmptyContent>
-					<div className="flex gap-2">
-						<Button size="sm">Create meeting</Button>
-						<Button size="sm" variant="outline">
-							<BookIcon />
-							View docs
-						</Button>
-					</div>
-				</EmptyContent>
-			</Empty>
-		);
-	}
 	return (
-		<div>
-			<div>
-				{plants.map((plants) => (
-					<Card key={plants.id}>{plants.name}</Card>
+		<Table variant="card">
+			<TableHeader>
+				<TableRow>
+					<TableHead>Name</TableHead>
+					<TableHead>Crop</TableHead>
+					<TableHead>Planted at</TableHead>
+					<TableHead className="text-right">Area</TableHead>
+				</TableRow>
+			</TableHeader>
+			<TableBody>
+				{plants.map((plant) => (
+					<TableRow key={plant.id}>
+						<TableCell className="font-medium">{plant.name}</TableCell>
+						<TableCell className="text-muted-foreground">
+							{plant.crop}
+						</TableCell>
+						<TableCell className="text-muted-foreground">
+							{plant.plantedAt}
+						</TableCell>
+						<TableCell className="text-right">{plant.area} m²</TableCell>
+					</TableRow>
 				))}
-			</div>
-		</div>
+			</TableBody>
+		</Table>
 	);
 };
 
