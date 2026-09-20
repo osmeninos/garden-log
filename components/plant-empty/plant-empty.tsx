@@ -14,20 +14,22 @@ import type { Plant } from "@/types/plant";
 
 const PlantEmpty = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	return (
-		<Empty className="min-h-dvh">
-			<EmptyHeader>
-				<EmptyMedia variant="icon">
-					<SproutIcon />
-				</EmptyMedia>
-				<EmptyTitle>No plants yet</EmptyTitle>
-				<EmptyDescription>
-					Add your first plant to start your garden log.
-				</EmptyDescription>
-			</EmptyHeader>
-			<EmptyContent>
-				<PlantDialog onAdd={onAdd} />
-			</EmptyContent>
-		</Empty>
+		<div>
+			<Empty className="min-h-dvh">
+				<EmptyHeader>
+					<EmptyMedia variant="icon">
+						<SproutIcon />
+					</EmptyMedia>
+					<EmptyTitle>No plants yet</EmptyTitle>
+					<EmptyDescription>
+						Add your first plant to start your garden log.
+					</EmptyDescription>
+				</EmptyHeader>
+				<EmptyContent>
+					<PlantDialog onAdd={onAdd} />
+				</EmptyContent>
+			</Empty>
+		</div>
 	);
 };
 

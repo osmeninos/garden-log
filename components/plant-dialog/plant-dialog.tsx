@@ -24,23 +24,25 @@ const PlantDialog = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	}
 
 	return (
-		<Dialog onOpenChange={setOpen} open={open}>
-			<DialogTrigger render={<Button />}>
-				<PlusIcon />
-				New plant
-			</DialogTrigger>
-			<DialogPopup>
-				<DialogHeader>
-					<DialogTitle>New plant</DialogTitle>
-					<DialogDescription>
-						Add something you just planted. You can log waterings later.
-					</DialogDescription>
-				</DialogHeader>
-				<DialogPanel>
-					<PlantForm onAdd={handleAdd} />
-				</DialogPanel>
-			</DialogPopup>
-		</Dialog>
+		<div>
+			<Dialog onOpenChange={setOpen} open={open}>
+				<DialogTrigger render={<Button />}>
+					<PlusIcon />
+					New plant
+				</DialogTrigger>
+				<DialogPopup>
+					<DialogHeader>
+						<DialogTitle>New plant</DialogTitle>
+						<DialogDescription>
+							Add something you just planted. You can log waterings later.
+						</DialogDescription>
+					</DialogHeader>
+					<DialogPanel>
+						<PlantForm onAdd={handleAdd} />
+					</DialogPanel>
+				</DialogPopup>
+			</Dialog>
+		</div>
 	);
 };
 

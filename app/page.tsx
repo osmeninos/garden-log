@@ -25,16 +25,20 @@ export default function Home() {
 
 	return (
 		<main className="mx-auto w-full max-w-4xl p-6">
-			<header className="mb-6 flex items-center justify-between gap-4">
-				<div>
-					<h1 className="font-heading font-semibold text-2xl">Garden log</h1>
-					<p className="text-muted-foreground text-sm">
-						{plantItem.length} plant{plantItem.length > 1 ? "s" : ""} growing
-					</p>
-				</div>
-				<PlantDialog onAdd={addPlant} />
-			</header>
-			<PlantsList plants={plantItem} />
+			<div>
+				<header className="mb-6 flex items-center justify-between gap-4">
+					<div>
+						<h1 className="font-heading font-semibold text-2xl">Garden log</h1>
+						<p className="text-muted-foreground text-sm">
+							{plantItem.length} plant{plantItem.length > 1 ? "s" : ""} growing
+						</p>
+					</div>
+					<PlantDialog onAdd={addPlant} />
+				</header>
+			</div>
+			<div>
+				<PlantsList plants={plantItem} />
+			</div>
 		</main>
 	);
 }
