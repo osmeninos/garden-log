@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import PlantForm from "@/components/plant-form/plant-form";
 import PlantsList from "@/components/plant-list/plant-list";
-import { loadPlants } from "@/lib/storage";
+import { loadPlants, savePlants } from "@/lib/storage";
 import type { Plant } from "@/types/plant";
 
 export default function Home() {
@@ -12,9 +12,16 @@ export default function Home() {
 		setPlantItem(loadPlants());
 	}, []);
 
+	function addPlant(plant: Plant) {
+		const next = [...plantItem, plant];
+		setPlantItem(next);
+		savePlants(next);
+	}
 	return (
 		<div>
-			<div>{/* <PlantForm /> */}</div>
+			<div>
+				<PlantForm onAdd={addPlant} />
+			</div>
 			<div>
 				<PlantsList plants={plantItem} />
 			</div>
