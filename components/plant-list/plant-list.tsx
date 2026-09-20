@@ -21,9 +21,9 @@ const PlantsList = ({
 	onRemove,
 }: {
 	plants: Plant[];
-	weather?: Weather | null;
-	onWater?: (id: string) => void;
-	onRemove?: (id: string) => void;
+	weather: Weather | null;
+	onWater: (id: string) => void;
+	onRemove: (id: string) => void;
 }) => {
 	return (
 		<div className="w-full">
