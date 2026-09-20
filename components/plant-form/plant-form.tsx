@@ -36,7 +36,13 @@ const PlantForm = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 			<form className="grid gap-4 sm:grid-cols-2" onSubmit={handleSubmit}>
 				<Field>
 					<FieldLabel>Name</FieldLabel>
-					<Input name="name" placeholder="Back tomato" required type="text" />
+					<Input
+						maxLength={40}
+						name="name"
+						placeholder="Back tomato"
+						required
+						type="text"
+					/>
 				</Field>
 
 				<Field>
@@ -62,7 +68,14 @@ const PlantForm = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 
 				<Field>
 					<FieldLabel>Area (m²)</FieldLabel>
-					<Input min="0" name="area" required step="0.1" type="number" />
+					<Input
+						max="10000"
+						min="0.1"
+						name="area"
+						required
+						step="0.1"
+						type="number"
+					/>
 				</Field>
 
 				<div className="sm:col-span-2">
