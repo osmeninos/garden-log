@@ -26,7 +26,7 @@ const PlantDialog = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 	return (
 		<div>
 			<Dialog onOpenChange={setOpen} open={open}>
-				<DialogTrigger render={<Button />}>
+				<DialogTrigger render={<Button className="cursor-pointer" />}>
 					<PlusIcon />
 					New plant
 				</DialogTrigger>

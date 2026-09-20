@@ -66,7 +66,9 @@ const PlantForm = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 				</Field>
 
 				<div className="sm:col-span-2">
-					<Button type="submit">Add plant</Button>
+					<Button className="cursor-pointer" type="submit">
+						Add plant
+					</Button>
 				</div>
 			</form>
 		</div>
