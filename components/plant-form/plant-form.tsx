@@ -3,6 +3,14 @@
 import type React from "react";
 import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import {
+	Select,
+	SelectItem,
+	SelectPopup,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
+import { CROPS } from "@/lib/crops";
 import type { Plant } from "@/types/plant";
 import { Button } from "../ui/button";
 
@@ -33,7 +41,18 @@ const PlantForm = ({ onAdd }: { onAdd: (plant: Plant) => void }) => {
 
 				<Field>
 					<FieldLabel>Crop</FieldLabel>
-					<Input name="crop" placeholder="tomato" required type="text" />
+					<Select defaultValue="lettuce" name="crop">
+						<SelectTrigger>
+							<SelectValue className="capitalize" />
+						</SelectTrigger>
+						<SelectPopup>
+							{Object.keys(CROPS).map((crop) => (
+								<SelectItem className="capitalize" key={crop} value={crop}>
+									{crop}
+								</SelectItem>
+							))}
+						</SelectPopup>
+					</Select>
 				</Field>
 
 				<Field>
