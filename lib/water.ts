@@ -30,15 +30,22 @@ function getPlace(): Promise<{ latitude: number; longitude: number }> {
 export async function getWeather(): Promise<Weather> {
 	const place = await getPlace();
 	// api que o gpt me mandou to pensando em jogar num arquivo novo e criar uma pasta de apizona
-	const url = `https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&daily=et0_fao_evapotranspiration,precipitation_sum&timezone=auto&forecast_days=1`;
+	// 2 casas (~1 km) bastam pro clima e evitam mandar a localizacao exata pra api
+	const latitude = place.latitude.toFixed(2);
+	const longitude = place.longitude.toFixed(2);
+	const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&daily=et0_fao_evapotranspiration,precipitation_sum&timezone=auto&forecast_days=1`;
 
 	const response = await fetch(url);
+	if (!response.ok) throw new Error("weather request failed");
 	const data = await response.json();
 
-	return {
-		et0: data.daily.et0_fao_evapotranspiration[0],
-		rain: data.daily.precipitation_sum[0],
-	};
+	const et0 = data?.daily?.et0_fao_evapotranspiration?.[0];
+	const rain = data?.daily?.precipitation_sum?.[0];
+	if (!Number.isFinite(et0) || !Number.isFinite(rain)) {
+		throw new Error("unexpected weather response");
+	}
+
+	return { et0, rain };
 }
 
 export function waterToday(weather: Weather, crop: string, area: number) {

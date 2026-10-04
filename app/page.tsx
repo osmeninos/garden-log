@@ -18,7 +18,9 @@ export default function Home() {
 	useEffect(() => {
 		setPlantItem(loadPlants());
 		setLoading(false);
-		getWeather().then(setWeather);
+		getWeather()
+			.then(setWeather)
+			.catch(() => setWeather(null));
 	}, []);
 
 	function updatePlants(next: Plant[]) {

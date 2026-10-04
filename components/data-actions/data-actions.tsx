@@ -3,6 +3,7 @@
 import { DownloadIcon, UploadIcon } from "lucide-react";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { parsePlants } from "@/lib/storage";
 import type { Plant } from "@/types/plant";
 
 const DataActions = ({
@@ -33,8 +34,20 @@ const DataActions = ({
 		if (!file) return;
 
 		try {
-			const imported = JSON.parse(await file.text());
-			if (Array.isArray(imported)) onImport(imported);
+			const imported = parsePlants(JSON.parse(await file.text()));
+			if (imported) {
+				// nao troca os dados atuais por uma lista vazia se nada do arquivo prestou
+				if (imported.skipped > 0 && imported.plants.length === 0) {
+					alert("No valid plants found in this file.");
+				} else {
+					onImport(imported.plants);
+					if (imported.skipped > 0) {
+						alert(
+							`Skipped ${imported.skipped} invalid plant(s) from the file.`,
+						);
+					}
+				}
+			}
 		} catch {
 			alert("This file is not a valid garden log export.");
 		}
